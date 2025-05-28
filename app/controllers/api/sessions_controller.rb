@@ -1,5 +1,5 @@
 module Api
-  class SessionsController < ApplicationController
+  class SessionsController < BaseController
     skip_before_action :validate_session_token, only: :create
 
     def create

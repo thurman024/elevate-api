@@ -1,5 +1,5 @@
 module Api
-  class UsersController < ApplicationController
+  class UsersController < BaseController
     skip_before_action :validate_session_token, only: :create
 
     def create
@@ -11,7 +11,9 @@ module Api
       end
     end
 
-    def show; end
+    def show
+      render :show
+    end
 
     private
 
