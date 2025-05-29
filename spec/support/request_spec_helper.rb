@@ -6,4 +6,4 @@ end
 
 RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
-end 
+end

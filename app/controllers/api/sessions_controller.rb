@@ -8,7 +8,7 @@ module Api
         session[:session_token] = user.reset_session_token!
         render json: { token: user.session_token }
       else
-        render json: { errors: ["Invalid email or password"] }, status: :unprocessable_entity
+        render json: { errors: [ "Invalid email or password" ] }, status: :unprocessable_entity
       end
     end
   end

@@ -9,7 +9,7 @@ RSpec.describe Api::SessionsController, type: :request do
 
       it 'returns a session token' do
         post '/api/sessions', params: valid_params
-        
+
         expect(response).to have_http_status(:success)
         expect(json_response).to include('token')
         expect(json_response['token']).to eq(user.reload.session_token)
@@ -21,7 +21,7 @@ RSpec.describe Api::SessionsController, type: :request do
 
       it 'returns an error message' do
         post '/api/sessions', params: invalid_params
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json_response['errors']).to include('Invalid email or password')
       end
@@ -32,7 +32,7 @@ RSpec.describe Api::SessionsController, type: :request do
 
       it 'returns an error message' do
         post '/api/sessions', params: nonexistent_params
-        
+
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json_response['errors']).to include('Invalid email or password')
       end

@@ -27,7 +27,7 @@ class User < ApplicationRecord
   private
 
   def fetch_fresh_status
-    api_response = BillingApiService.new(id).fetch_subscription_status    
+    api_response = BillingApiService.new(id).fetch_subscription_status
     api_response["subscription_status"]
   end
 end

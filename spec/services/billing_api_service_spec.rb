@@ -8,7 +8,7 @@ RSpec.describe BillingApiService do
     context 'when the request is successful' do
       it 'returns the parsed response' do
         result = service.fetch_subscription_status
-        
+
         expect(result).to be_a(Hash)
         expect(result).to have_key('subscription_status')
       end
@@ -20,7 +20,7 @@ RSpec.describe BillingApiService do
           .to_return(status: 500, body: 'Internal Server Error')
 
         result = service.fetch_subscription_status
-        
+
         expect(result).to eq({ "subscription_status" => "unavailable" })
       end
     end

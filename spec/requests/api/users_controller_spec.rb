@@ -50,7 +50,7 @@ RSpec.describe Api::UsersController, type: :request do
         get api_user_path, headers: { 'Authorization': "Bearer #{user.session_token}" }, as: :json
 
         expect(response).to have_http_status(:ok)
-        
+
         json_response = JSON.parse(response.body)
         expect(json_response['user']).to include(
           'id' => user.id,

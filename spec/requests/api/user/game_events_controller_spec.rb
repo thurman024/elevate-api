@@ -6,9 +6,9 @@ RSpec.describe Api::User::GameEventsController, type: :request do
   let(:game_event_params) do
     {
       "game_event": {
-        "game_name":"Brevity",
-        "type":"COMPLETED",
-        "occurred_at":"2025-01-01T00:00:00.000Z"
+        "game_name": "Brevity",
+        "type": "COMPLETED",
+        "occurred_at": "2025-01-01T00:00:00.000Z"
       }
     }
   end

@@ -15,7 +15,7 @@ class BillingApiService
         "Authorization" => "Bearer #{@token}"
       }
     )
-    
+
     handle_response(response)
   end
 
