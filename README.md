@@ -57,10 +57,8 @@ POST /api/user
 Content-Type: application/json
 
 {
-  "user": {
-    "email": "user@example.com",
-    "password": "your_password"
-  }
+  "email": "user@example.com",
+  "password": "your_password"
 }
 ```
 
