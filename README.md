@@ -1,24 +1,98 @@
-# README
+# Elevate API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails 8.0 API application with user authentication.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby (version specified in `.ruby-version`)
+- SQLite 3
 
-* System dependencies
+## Setup
 
-* Configuration
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd elevate-api
+```
 
-* Database creation
+2. Upload the provided .env file or add the billing service JWT token yourself
 
-* Database initialization
+3. Install dependencies and set up the database:
+```bash
+bin/setup
+```
 
-* How to run the test suite
+This script will:
+- Install Ruby gems
+- Set up the database
+- Clear logs and temporary files
+- Start the development server automatically
 
-* Services (job queues, cache servers, search engines, etc.)
+## Usage
 
-* Deployment instructions
+The API requires authentication for most endpoints using a Bearer token in the Authorization header:
+```
+Authorization: Bearer <session_token>
+```
 
-* ...
+### Authentication Endpoints
+
+#### Login
+```
+POST /api/sessions
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "your_password"
+}
+```
+Returns a session token to use for authenticated requests.
+
+### User Endpoints
+
+#### Create User
+```
+POST /api/user
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "user@example.com",
+    "password": "your_password"
+  }
+}
+```
+
+#### Get User Profile
+```
+GET /api/user
+Authorization: Bearer <session_token>
+```
+
+### Game Events
+
+#### Track Game Completion
+```
+POST /api/user/game_events
+Authorization: Bearer <session_token>
+Content-Type: application/json
+
+{
+  "game_event": {
+    "type": "COMPLETED"
+  }
+}
+```
+Increments the user's games_played counter.
+
+## Testing
+
+The project uses RSpec for testing.
+
+To run the test suite:
+```bash
+bundle exec rspec
+```
+
+
