@@ -7,7 +7,7 @@ module Api
 
       if auth_header&.starts_with?('Bearer ')
         token = auth_header.split(' ').last
-        @current_user = User.find_by(session_token: token)
+        @current_user = ::User.find_by(session_token: token)
       end
 
       head :unauthorized unless @current_user

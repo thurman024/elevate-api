@@ -3,7 +3,7 @@ module Api
     skip_before_action :validate_session_token, only: :create
 
     def create
-      user = User.find_by(email: params[:email])
+      user = ::User.find_by(email: params[:email])
       if user && user.authenticate(params[:password])
         session[:session_token] = user.reset_session_token!
         render json: { token: user.session_token }

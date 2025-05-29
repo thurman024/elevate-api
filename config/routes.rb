@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :api do
-    resources :users, only: :create do
-      resources :game_events, only: :create
+    resource :user, only: [:create, :show] do
+      scope module: :user do
+        resource :game_events, only: :create
+      end
     end
-    get "users", to: "users#show"
     resource :sessions, only: :create
   end
 end
