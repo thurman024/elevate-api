@@ -32,6 +32,6 @@ class BillingApiService
   end
 
   def unavailable_response
-    { subscription_status: "unavailable" }
+    { "subscription_status" => "unavailable" }
   end
 end

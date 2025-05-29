@@ -79,3 +79,13 @@ RSpec.configure do |config|
     end
   end
 end
+
+require 'vcr'
+require 'webmock/rspec'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/vcr_cassettes"
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.filter_sensitive_data('<BILLING_API_TOKEN>') { ENV['BILLING_API_TOKEN'] }
+end
