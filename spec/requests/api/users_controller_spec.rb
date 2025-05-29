@@ -4,10 +4,8 @@ RSpec.describe Api::UsersController, type: :request do
   describe 'POST /api/user' do
     let(:valid_params) do
       {
-        user: {
-          email: 'test@example.com',
-          password: 'password123'
-        }
+        email: 'test@example.com',
+        password: 'password123'
       }
     end
 
