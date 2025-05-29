@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  SUBSCRIPTION_STATUS_CACHE_EXPIRATION = 24.hours
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
@@ -12,19 +13,21 @@ class User < ApplicationRecord
   def subscription_status
     cache_key = "user_subscription_status/#{id}"
     cached_status = Rails.cache.read(cache_key)
-    
+
     if cached_status.nil? || cached_status == "unavailable"
       status = fetch_fresh_status
       # Only cache if we got a valid status
-      Rails.cache.write(cache_key, status, expires_in: 24.hours) if status.present?
+      Rails.cache.write(cache_key, status, expires_in: SUBSCRIPTION_STATUS_CACHE_EXPIRATION) if status.present?
       status
     else
       cached_status
     end
   end
 
+  private
+
   def fetch_fresh_status
-    api_response = ::BillingApiService.new(id).fetch_subscription_status    
+    api_response = BillingApiService.new(id).fetch_subscription_status    
     api_response["subscription_status"]
   end
 end
